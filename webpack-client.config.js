@@ -21,22 +21,22 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/,
       },
         {
         test: /\.ejs$/,
-        loader: 'ejs-loader',
+        loader: "ejs-loader",
         options: {
-          variable: 'data',
-          interpolate : '\\{\\{(.+?)\\}\\}',
-          evaluate : '\\[\\[(.+?)\\]\\]'
+          variable: "data",
+          interpolate : "\\{\\{(.+?)\\}\\}",
+          evaluate : "\\[\\[(.+?)\\]\\]"
         }
       }
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: [".tsx", ".ts", ".js"],
   },
     plugins: [new HtmlWebpackPlugin({
          _: "underscore"

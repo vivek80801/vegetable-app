@@ -1,0 +1,23 @@
+<form action="/signup" method="POST">
+    <h1>sign up</h1>
+    <div class="from-group">
+        <label for="username">Username: </label>
+        <input type="text" name="username" required />
+    </div>
+    <div class="from-group">
+        <label for="email">Email: </label>
+        <input type="email" name="email" required />
+    </div>
+    <div class="from-group">
+        <label for="password">Password: </label>
+        <input type="password" name="password" required />
+    </div>
+    <div class="from-group">
+        <select name="category" required>
+            <option disabled aria-disabled="true" selected value="">choose your category</option>
+            <option value="farmer">farmer</option>
+            <option value="buyer">buyer</option>
+        </select>
+    </div>
+    <button type="submit">sign up</button>
+</form>

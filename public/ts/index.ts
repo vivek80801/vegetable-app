@@ -1,5 +1,5 @@
 import "../scss/main.scss";
 
-const name = "vivke"
+const name = "vivke";
 
-console.log(name)
+console.log(name);

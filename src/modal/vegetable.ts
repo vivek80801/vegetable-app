@@ -5,8 +5,12 @@ const vegetableSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    price:{
+        type:Number,
+        required: true
+    },
     organic: {
         type: Boolean,
         required: true
     }
-})
+});

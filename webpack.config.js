@@ -1,4 +1,4 @@
-const {resolve} = require("path")
+const {resolve} = require("path");
 
 module.exports = {
     target: "node",
@@ -12,12 +12,12 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: [".tsx", ".ts", ".js"],
   },
-}
+};

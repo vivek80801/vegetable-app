@@ -3,9 +3,9 @@ export class MyError {
     length: number;
     constructor(){
         this.errors =[];
-        this.length = this.errors.length
+        this.length = this.errors.length;
     }
     add(error:string){
-        this.errors.push(error)
+        this.errors.push(error);
     }
 }
