@@ -1,0 +1,8 @@
+<h1>welcome to cart</h1>
+<% if (typeof JSON.stringify(cart) != "undefined") { %>
+ <% cart.forEach(veg => { %>
+    <h2><%= veg.name %> </h2>
+    <img src="/upload/<%= veg.img %> " alt="<%= veg.name %>" height="200px" width="200px">
+    Price: <%= veg.price %>
+ <% }) %> 
+<% } %>

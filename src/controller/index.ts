@@ -1,6 +1,7 @@
 import {Request, Response, NextFunction} from "express";
 import passport from "passport";
 import {MyUser} from "./services/entity/user"
+import {User} from "../modal/user"
 
 export const handleIndexGet = (req:Request, res:Response) => {
     res.render("index");
@@ -46,3 +47,38 @@ export const handleDashboardGet = (req: Request, res: Response) => {
 export const handleLogoutGet = (req: Request, res: Response) => {
 
 };
+
+export const handleCartGet = (req: Request, res:Response) => {
+    if(req.user !== undefined){
+        const myUser: any = req.user;
+        User.findById({_id: myUser._id}).then((user) => {
+            if(user !== null){
+                res.render("cart", {cart: user.cart});
+            }
+        }).catch(err => console.log(err));
+    } else {
+        res.redirect("/login")
+    }
+}
+
+export const handleCartPost = (req: Request, res: Response) => {
+    interface IReqBody{
+        name:string,
+        price: number,
+        img: string,
+        organic: boolean
+    }
+    const {name, price, img, organic}: IReqBody = req.body;
+    if(req.user !== undefined){
+        const myUser: any = req.user;
+        User.findById({_id: myUser._id}).then((user) => {
+            if(user !== null){
+                user.cart.push({name, price, img, organic})
+                user.save()
+            }
+        })
+        res.json({msg: "vegetable is added to your cart"});
+    } else {
+        res.redirect("/login")
+    }
+}

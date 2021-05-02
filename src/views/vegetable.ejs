@@ -4,5 +4,24 @@
     <% vegetables.forEach(vegetable => { %>
      <h1><%= vegetable.name %> </h1>
      <img src="/upload/<%= vegetable.img %> " alt="<%= vegetable.name %> " height="200px" width="200px">
+     <button id="cart-btn">add to cart</button>
+     <a href="/cart">cart</a>
+     <script>
+         const cartBtn = document.getElementById("cart-btn")
+         cartBtn.addEventListener("click", () => {
+             fetch("/cart", {
+                 method:"POST",
+                 body: JSON.stringify({
+                     name:"<%= vegetable.name %>",
+                     price: parseInt("<%= vegetable.price %>"),
+                     img: "<%= vegetable.img %>",
+                     organic: JSON.parse("<%= vegetable.organic %>")
+                    }),
+                    headers:{
+                        'Content-Type': 'application/json'
+                    }
+             }).then(res => console.log(res.json())).catch(err => console.log(err))
+         })
+     </script>
     <% }) %>
 <% } %>
