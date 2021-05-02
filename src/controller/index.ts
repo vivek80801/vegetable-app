@@ -36,7 +36,7 @@ export const handleLoginPost = (req: Request, res: Response, next:NextFunction) 
     passport.authenticate("local", {
         failureRedirect:"/login",
         successRedirect:"/dashboard"
-    })(req, res, next);
+    })(req, res, next)
 };
 
 export const handleDashboardGet = (req: Request, res: Response) => {

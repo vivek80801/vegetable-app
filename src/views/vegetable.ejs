@@ -1,1 +1,8 @@
 <h1>welcome to vegetable page</h1>
+
+<% if (typeof JSON.stringify(vegetables) != "undefined") { %>
+    <% vegetables.forEach(vegetable => { %>
+     <h1><%= vegetable.name %> </h1>
+     <img src="/upload/<%= vegetable.img %> " alt="<%= vegetable.name %> " height="200px" width="200px">
+    <% }) %>
+<% } %>

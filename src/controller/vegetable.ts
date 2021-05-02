@@ -1,9 +1,12 @@
 import { Request, Response } from "express";
 import {Vegetable} from "./services/entity/vegetable"
 import {upload} from "./services/microservices/vegetable"
+import { Vegetable as MVegetable} from "../modal/vegetable";
 
 export const handleVegetableGet = (req: Request, res: Response) => {
-    res.render("vegetable");
+    MVegetable.find().then((vegetables) => {
+        res.render("vegetable", {vegetables: vegetables});
+    }).catch(err => console.log(err))
 };
 
 export const handleVegtableCreateGet = (req: Request, res: Response) => {
