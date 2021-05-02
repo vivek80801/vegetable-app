@@ -4,5 +4,34 @@
     <h2><%= veg.name %> </h2>
     <img src="/upload/<%= veg.img %> " alt="<%= veg.name %>" height="200px" width="200px">
     Price: <%= veg.price %>
+    Count: <span id="count">1</span>
+    <button style="padding: 0.75rem;" id="add">+</button>
+    <button style="padding: 0.75rem;" id="subtract">-</button>
+    Total: <span id="total"></span>
+    <script>
+        const span = document.getElementById("count")
+        const addBtn = document.getElementById("add")
+        const subBtn = document.getElementById("subtract")
+        const total = document.getElementById("total")
+        let count = 1;
+        let tot = parseInt("<%= veg.price %>") * count;
+
+        total.innerText = tot
+
+        addBtn.addEventListener("click", () => {
+            count += 1;
+            tot = parseInt("<%= veg.price %>") * count;
+            span.innerText = count;
+            total.innerText = tot
+        })
+        subBtn.addEventListener("click", () => {
+            if(count > 1){
+                count -= 1;
+                tot = parseInt("<%= veg.price %>") * count;
+                span.innerText = count;
+                total.innerText = tot
+            }
+        })
+    </script>
  <% }) %> 
 <% } %>
