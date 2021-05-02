@@ -2,3 +2,5 @@
 /**/dist
 /**/*.env
 .env
+/public/js
+/public/upload

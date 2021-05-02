@@ -6,7 +6,7 @@ module.exports = {
     target:"web",
     entry: "./public/ts/index.ts",
     output: {
-        path: resolve(__dirname + "/dist/public"),
+        path:process.env.MY_ENV !=="production"? resolve(__dirname + "/public/js"): resolve(__dirname + "/dist/public"),
         filename: "[name].min.js"
     },
   module: {

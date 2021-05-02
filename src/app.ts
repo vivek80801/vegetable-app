@@ -5,8 +5,9 @@ import passport from "passport";
 import session from "express-session";
 import expressLayouts from "express-ejs-layouts";
 import { myPassport} from "./controller/services/microservices/passport";
-import {mainRouter} from "./routes/index";
 import { connectDB } from "./controller/services/microservices/db";
+import {mainRouter} from "./routes/index";
+import { vegetableRouter } from "./routes/vegetable";
 
 export const app = express();
 
@@ -16,6 +17,7 @@ myPassport(passport);
 
 app.set("views", "src/views");
 app.set("view engine", "ejs");
+app.engine("ejs", require("ejs").__express);
 app.use(
 	session({
 		secret: process.env.SECRET || "my secret",
@@ -35,9 +37,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", mainRouter);
+app.use("/vegetable", vegetableRouter);
 
-app.use((req, res) => {
-	res.render("404");
+app.use((req, res, next) => {
+	if(!req.session){
+		return next(new Error("Oh no"));
+	}else{
+		res.render("404");
+	}
 });
 
 app.use(

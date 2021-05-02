@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { handleIndexGet, handleLoginGet, handleLoginPost, handleSignupPost, handleAboutGet, handleDashboardGet } from "../controller/index";
-import {isAuth} from "../controller/services/auth"
+import {isAuth} from "../controller/services/auth";
 
 export const mainRouter = Router();
 

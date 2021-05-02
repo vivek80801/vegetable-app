@@ -1,5 +1,5 @@
 import {MyError} from "./error";
-import {saveUserToDatabase} from "./microservices/user";
+import {saveUserToDatabase} from "../microservices/user";
 
 export class MyUser {
     username: string;
@@ -23,7 +23,7 @@ export class MyUser {
         } else if(this.password.length > 10){
             errors.add("password can not be more than 10 characters");
         } else if(errors.length > 0){
-            return errors;
+            return errors.errors;
         }else{
             return "valid user";
         }

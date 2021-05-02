@@ -1,0 +1,23 @@
+<form action="/vegetable/create" method="POST" enctype="multipart/form-data">
+    <h1>create vegetable</h1>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" required aria-required="true" />
+    </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" name="price" required aria-required="true" />
+    </div>
+    <div class="form-group">
+        <select name="organic">
+            <option value="" disabled selected required aria-required="true">Is this vegetable organic?</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="file">Choose your file</label>
+        <input type="file" name="vegetableImage" required aria-required="true">
+    </div>
+    <button type="submit">create vegetable</button>
+</form>

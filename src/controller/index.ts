@@ -1,7 +1,6 @@
 import {Request, Response, NextFunction} from "express";
-import {MyUser} from "./services/user";
 import passport from "passport";
-
+import {MyUser} from "./services/entity/user"
 
 export const handleIndexGet = (req:Request, res:Response) => {
     res.render("index");
@@ -24,7 +23,7 @@ export const handleSignupPost = (req: Request, res: Response) => {
         newUser.save();
         res.redirect("/login");
     } else {
-        console.log(newUser.validate());
+        const errors = newUser.validate();
         res.redirect("/");
     }
 };
@@ -41,5 +40,9 @@ export const handleLoginPost = (req: Request, res: Response, next:NextFunction) 
 };
 
 export const handleDashboardGet = (req: Request, res: Response) => {
-    res.render("dashboard");
+        res.render("dashboard", {user: req.user});
+};
+
+export const handleLogoutGet = (req: Request, res: Response) => {
+
 };

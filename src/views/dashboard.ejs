@@ -1,1 +1,9 @@
-<h1>welcome to dahsboard</h1>
+<% if(user !== undefined){ %>
+    <h1>welcome <%- user.username %> to dashboard</h1>
+    <a href="/vegetable/">show vegetables</a>
+    <% if(user.category === "farmer"){ %>
+        <a href="/vegetable/create">create velgetable</a>
+    <% } %>
+<% } else { %>
+    <h1>you are not logged in</h1>
+<% } %>

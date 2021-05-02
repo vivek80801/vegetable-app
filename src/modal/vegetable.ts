@@ -1,5 +1,11 @@
 import mongoose from "mongoose";
 
+interface IVegetable extends mongoose.Document {
+    name: string;
+    price: number;
+    organic: boolean;
+}
+
 const vegetableSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -12,5 +18,11 @@ const vegetableSchema = new mongoose.Schema({
     organic: {
         type: Boolean,
         required: true
+    },
+    img:{
+        type:String,
+        required: true
     }
 });
+
+export const Vegetable = mongoose.model<IVegetable>("vegetables", vegetableSchema);
