@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
+import {IUser} from "./user"
 
-interface IVegetable extends mongoose.Document {
+export interface IVegetable extends mongoose.Document {
     name: string;
     price: number;
     organic: boolean;
+    owner: IUser;
 }
 
 const vegetableSchema = new mongoose.Schema({
@@ -22,7 +24,12 @@ const vegetableSchema = new mongoose.Schema({
     img:{
         type:String,
         required: true
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+        required: true
     }
 });
 
-export const Vegetable = mongoose.model<IVegetable>("vegetables", vegetableSchema);
+export const Vegetable = mongoose.model<IVegetable>("vegetable", vegetableSchema);

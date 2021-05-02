@@ -1,3 +1,4 @@
+import { IUser } from "../../../modal/user";
 import { MyError } from "./error";
 import {saveVegetableToDatabase} from "../microservices/vegetable"
 
@@ -6,11 +7,13 @@ export class Vegetable {
     price: number;
     organic: boolean;
     img: string;
-    constructor(name:string, price: number, organic:boolean, img: string){
+    owner: IUser;
+    constructor(name:string, price: number, organic:boolean, img: string, owner: IUser){
         this.name = name;
         this.price = price;
         this.organic = organic;
         this.img = img;
+        this.owner = owner;
     }
     validate(){
         const errors = new MyError();
@@ -25,6 +28,6 @@ export class Vegetable {
         }
     }
     save(){
-        saveVegetableToDatabase(this.name, this.price, this.organic, this.img)
+        saveVegetableToDatabase(this.name, this.price, this.organic, this.img, this.owner)
     }
 }

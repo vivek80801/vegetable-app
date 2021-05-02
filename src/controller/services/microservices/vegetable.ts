@@ -1,15 +1,23 @@
 import path from "path"
 import multer from "multer"
 import { Vegetable } from "../../../modal/vegetable";
+import { User, IUser} from "../../../modal/user"
 
-export const saveVegetableToDatabase = (name: string, price: number, organic:boolean, img: string) => {
-    const newVegetable = new Vegetable({
-        name,
-        price,
-        organic,
-		img
-    })
-    console.log(newVegetable)
+export const saveVegetableToDatabase = (name: string, price: number, organic: boolean, img: string, owner: IUser) => {
+	const newVegetable = new Vegetable({
+		name,
+		price,
+		organic,
+		img,
+		owner
+	})
+	User.findById({ _id: owner._id }).then((user) => {
+		if(user !== null){
+			user.vegetables.push(newVegetable)
+			user.save()
+		}
+	}).catch(err => console.log(err))
+	newVegetable.save()
 }
 
 const stroage = multer.diskStorage({

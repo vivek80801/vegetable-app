@@ -19,23 +19,26 @@ export const handleVegetableCreatePost = (req: Request, res: Response) => {
     upload(req, res, (err:any) => {
     const {name, price, organic}: IReqBody = req.body;
     const isOrganic = organic === "yes"? true: false;
-    const img = req.file
-    const newVegetable = new Vegetable(name, price, isOrganic, img.filename )
-    if(newVegetable.validate() === "valid vegetable"){
-            if(err){
-                return res.render("createvegetable", {msg:err})
+    const img = req.file;
+    if(req.user !== undefined){
+        const myUser:any = req.user
+        const newVegetable = new Vegetable(name, price, isOrganic, img.filename, myUser)
+        if(newVegetable.validate() === "valid vegetable"){
+                if(err){
+                    return res.render("createvegetable", {msg:err})
+                }else{
+                    newVegetable.save()
+                    res.redirect("/vegetable")
+                }
             }else{
-                newVegetable.save()
-                res.redirect("/vegetable")
+                const errors = newVegetable.validate()
+                if(errors === undefined){
+                }else {
+                    console.log("error is undefined")
+                    console.log(errors)
+                }
+                res.redirect("/dashboard")
             }
-        }else{
-            const errors = newVegetable.validate()
-            if(errors === undefined){
-            }else {
-                console.log("error is undefined")
-                console.log(errors)
-            }
-            res.redirect("/dashboard")
-        }
+    }
     })
 }
